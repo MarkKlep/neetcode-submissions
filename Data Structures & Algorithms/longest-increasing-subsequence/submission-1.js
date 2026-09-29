@@ -1,0 +1,33 @@
+class Solution {
+    /**
+     * @param {number[]} nums
+     * @return {number}
+     */
+    lengthOfLIS(nums) {
+        const n = nums.length;
+        const dp = Array(n).fill(1);
+
+        dp[0] = 1;
+        
+        for (let i = 1; i < n; i++) {
+            for (let j = 0; j < i; j++) {
+                if (nums[j] < nums[i]) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                }
+            }
+        }
+        
+        return Math.max(...dp);
+    }
+}
+/*
+    9, 1, 4, 2, 3, 3, 7
+9.  1
+1
+4
+2
+3
+3
+7
+
+*/
